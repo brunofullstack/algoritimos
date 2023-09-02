@@ -1,6 +1,7 @@
 # algoritimos
 Algoritimos que todo programador deveria ter conhecimento
 
+## Em Python
 ### Busca Linear
 A busca linear é um algoritmo simples que percorre uma lista de elementos um por um até encontrar o elemento desejado ou determinar que ele não existe na lista.
 
@@ -176,3 +177,176 @@ heap_sort(lista)
 print('Lista ordenada pelo Heap Sort:', lista)
 ```
 
+__________________________________________________________________________________________________________________________________________________
+
+## Em PHP
+
+### Busca Linear
+A busca linear é um algoritmo simples que percorre um array de elementos um por um até encontrar o elemento desejado ou determinar que ele não existe no array.
+
+```php
+function buscaLinear($array, $alvo) {
+    $n = count($array);
+    for ($i = 0; $i < $n; $i++) {
+        if ($array[$i] == $alvo) {
+            return $i; // Retorna o índice do elemento se encontrado
+        }
+    }
+    return -1; // Retorna -1 se o elemento não estiver no array
+}
+
+// Exemplo de uso:
+$array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+$alvo = 6;
+$resultado = buscaLinear($array, $alvo);
+if ($resultado != -1) {
+    echo "O elemento $alvo foi encontrado no índice $resultado.";
+} else {
+    echo "O elemento $alvo não foi encontrado no array.";
+}
+```
+
+### Busca Binária
+A busca binária é um algoritmo eficiente que funciona em arrays ordenados, dividindo o array pela metade a cada iteração.
+
+```php
+function buscaBinaria($array, $alvo) {
+    $esquerda = 0;
+    $direita = count($array) - 1;
+    while ($esquerda <= $direita) {
+        $meio = floor(($esquerda + $direita) / 2);
+        if ($array[$meio] == $alvo) {
+            return $meio; // Retorna o índice do elemento se encontrado
+        } elseif ($array[$meio] < $alvo) {
+            $esquerda = $meio + 1;
+        } else {
+            $direita = $meio - 1;
+        }
+    }
+    return -1; // Retorna -1 se o elemento não estiver no array
+}
+
+// Exemplo de uso (o array deve estar ordenado):
+$array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+$alvo = 6;
+$resultado = buscaBinaria($array, $alvo);
+if ($resultado != -1) {
+    echo "O elemento $alvo foi encontrado no índice $resultado.";
+} else {
+    echo "O elemento $alvo não foi encontrado no array.";
+}
+```
+
+### Bubble Sort
+O Bubble Sort é um algoritmo de classificação simples que compara pares de elementos adjacentes e os troca se estiverem fora de ordem.
+
+```php
+function bubbleSort($array) {
+    $n = count($array);
+    for ($i = 0; $i < $n - 1; $i++) {
+        for ($j = 0; $j < $n - $i - 1; $j++) {
+            if ($array[$j] > $array[$j + 1]) {
+                // Troca os elementos se estiverem fora de ordem
+                $temp = $array[$j];
+                $array[$j] = $array[$j + 1];
+                $array[$j + 1] = $temp;
+            }
+        }
+    }
+}
+
+// Exemplo de uso:
+$array = [64, 34, 25, 12, 22, 11, 90];
+bubbleSort($array);
+echo "Array ordenado pelo Bubble Sort: " . implode(', ', $array);
+```
+
+### Insertion Sort
+O Insertion Sort é um algoritmo de classificação que constrói o array ordenado um item de cada vez, movendo elementos não ordenados para sua posição correta.
+
+```php
+function insertionSort($array) {
+    $n = count($array);
+    for ($i = 1; $i < $n; $i++) {
+        $chave = $array[$i];
+        $j = $i - 1;
+        while ($j >= 0 && $array[$j] > $chave) {
+            $array[$j + 1] = $array[$j];
+            $j--;
+        }
+        $array[$j + 1] = $chave;
+    }
+}
+
+// Exemplo de uso:
+$array = [64, 34, 25, 12, 22, 11, 90];
+insertionSort($array);
+echo "Array ordenado pelo Insertion Sort: " . implode(', ', $array);
+```
+
+### Quick Sort
+O Quick Sort é um algoritmo de classificação eficiente que divide o array em partições menores e as ordena recursivamente.
+
+```php
+function quickSort($array) {
+    $n = count($array);
+    if ($n <= 1) {
+        return $array;
+    } else {
+        $pivo = $array[0];
+        $menores = $maiores = array();
+        for ($i = 1; $i < $n; $i++) {
+            if ($array[$i] <= $pivo) {
+                $menores[] = $array[$i];
+            } else {
+                $maiores[] = $array[$i];
+            }
+        }
+        return array_merge(quickSort($menores), array($pivo), quickSort($maiores));
+    }
+}
+
+// Exemplo de uso:
+$array = [64, 34, 25, 12, 22, 11, 90];
+$arrayOrdenado = quickSort($array);
+echo "Array ordenado pelo Quick Sort: " . implode(', ', $arrayOrdenado);
+```
+
+### Merge Sort
+O Merge Sort é um algoritmo de classificação que divide o array em duas metades, ordena cada metade e depois as mescla.
+
+```php
+function mergeSort($array) {
+    $n = count($array);
+    if ($n <= 1) {
+        return $array;
+    }
+    
+    $meio = floor($n / 2);
+    $esquerda = array_slice($array, 0, $meio);
+    $direita = array_slice($array, $meio);
+    
+    $esquerda = mergeSort($esquerda);
+    $direita = mergeSort($direita);
+    
+    return merge($esquerda, $direita);
+}
+
+function merge($esquerda, $direita) {
+    $resultado = array();
+    $i = $j = 0;
+    
+    while ($i < count($esquerda) && $j < count($direita)) {
+        if ($esquerda[$i] < $direita[$j]) {
+            $resultado[] = $esquerda[$i];
+            $i++;
+        } else {
+            $resultado[] = $direita[$j];
+            $j++;
+        }
+    }
+    
+    while ($i < count($esquerda)) {
+        $resultado[] = $esquerda[$i];
+        $i++;
+   
