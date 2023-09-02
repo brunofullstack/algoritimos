@@ -181,8 +181,6 @@ ________________________________________________________________________________
 
 ## Em PHP
 
-Claro! Aqui estão os mesmos tutoriais com exemplos em PHP para cada um dos algoritmos que você mencionou:
-
 ### Busca Linear
 A busca linear é um algoritmo simples que percorre um array de elementos um por um até encontrar o elemento desejado ou determinar que ele não existe no array.
 
