@@ -181,6 +181,8 @@ ________________________________________________________________________________
 
 ## Em PHP
 
+Claro! Aqui estão os mesmos tutoriais com exemplos em PHP para cada um dos algoritmos que você mencionou:
+
 ### Busca Linear
 A busca linear é um algoritmo simples que percorre um array de elementos um por um até encontrar o elemento desejado ou determinar que ele não existe no array.
 
@@ -350,3 +352,65 @@ function merge($esquerda, $direita) {
         $resultado[] = $esquerda[$i];
         $i++;
    
+
+ }
+    
+    while ($j < count($direita)) {
+        $resultado[] = $direita[$j];
+        $j++;
+    }
+    
+    return $resultado;
+}
+
+// Exemplo de uso:
+$array = [64, 34, 25, 12, 22, 11, 90];
+$arrayOrdenado = mergeSort($array);
+echo "Array ordenado pelo Merge Sort: " . implode(', ', $arrayOrdenado);
+```
+
+### Heap Sort
+O Heap Sort é um algoritmo de classificação que utiliza uma estrutura de dados chamada heap para ordenar elementos.
+
+```php
+function heapify(&$array, $n, $i) {
+    $maior = $i;
+    $esquerda = 2 * $i + 1;
+    $direita = 2 * $i + 2;
+
+    if ($esquerda < $n && $array[$esquerda] > $array[$maior]) {
+        $maior = $esquerda;
+    }
+
+    if ($direita < $n && $array[$direita] > $array[$maior]) {
+        $maior = $direita;
+    }
+
+    if ($maior != $i) {
+        list($array[$i], $array[$maior]) = array($array[$maior], $array[$i]);
+        heapify($array, $n, $maior);
+    }
+}
+
+function heapSort(&$array) {
+    $n = count($array);
+
+    // Constrói o heap máximo
+    for ($i = floor($n / 2) - 1; $i >= 0; $i--) {
+        heapify($array, $n, $i);
+    }
+
+    // Extrai elementos do heap um por um
+    for ($i = $n - 1; $i > 0; $i--) {
+        list($array[0], $array[$i]) = array($array[$i], $array[0]);
+        heapify($array, $i, 0);
+    }
+}
+
+// Exemplo de uso:
+$array = [64, 34, 25, 12, 22, 11, 90];
+heapSort($array);
+echo "Array ordenado pelo Heap Sort: " . implode(', ', $array);
+```
+
+Espero que esses exemplos em PHP para os algoritmos mencionados sejam úteis para você!
